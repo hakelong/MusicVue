@@ -1,23 +1,25 @@
 <template>
   <div id="app">
-
-    <router-view/>
+    <Mheader></Mheader>
+    <Mtab></Mtab>
+    <router-view></router-view>
   </div>
 </template>
 
-<script>
+<script type='type/javascript'>
+import Mheader from "@/components/m-header/m-header";
+import Mtab from "@/components/tab/tab";
 export default {
+  components:{
+    Mheader,
+    Mtab
+  },
   name: 'App'
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped lang='stylus' >
+  @import "common/stylus/variable.styl"
+
+
 </style>
