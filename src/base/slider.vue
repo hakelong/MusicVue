@@ -33,6 +33,7 @@ export default{
     }
   },
   mounted(){
+    console.log('开始')
     setTimeout(()=>{
       this._setSliderWidth()
       this._initDots()
@@ -40,12 +41,21 @@ export default{
       if(this.autoPlay){
         this._play();
       }
-
     },20)
-
+    window.addEventListener('resize',()=>{
+      if(!this.slider){
+        return
+      }
+      this._setSliderWidth(true)
+      this.slider.refresh()
+    })
+  },
+  destroyed(){
+    console.log('摧毁')
+    clearTimeout(this.timer)
   },
   methods:{
-    _setSliderWidth(){
+    _setSliderWidth(resize){
       this.children=this.$refs.sliderGroup.children
       let children=this.$refs.sliderGroup.children
       let width=0;
@@ -56,7 +66,7 @@ export default{
         child.style.width=sliderWidth+'px'
         width+=sliderWidth
       }
-      if(this.loop){
+      if(this.loop&&!resize){
         width+=2*sliderWidth
       }
       this.$refs.sliderGroup.style.width=width+'px'
@@ -81,6 +91,11 @@ export default{
           index-=1
         }
         this.currentPageIndex=index
+
+        if(this.autoPlay){
+          clearTimeout(this.timer)//每次end的时候清理前一次的计时器，防止在自动轮播的间隔手动拖拽，一下生成多个计时器
+          this._play()
+        }
       })
     },
     _play(){

@@ -6,11 +6,22 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api/getDiscList': {
+        target: 'http://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/getDiscList': ''
+        },
+        onProxyReq(proxyReq, req, res) {
+          proxyReq.setHeader('Host', 'c.y.qq.com')
+          proxyReq.setHeader('Referer', 'https://c.y.qq.com/')
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -20,7 +31,6 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
     /**
      * Source Maps
      */
