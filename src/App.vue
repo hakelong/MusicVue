@@ -14,7 +14,7 @@ import Mtab from "@/components/tab/tab";
 export default {
   components:{
     Mheader,
-    Mtab
+    Mtab,
   },
   name: 'App'
 }
@@ -22,6 +22,5 @@ export default {
 
 <style scoped lang='stylus' >
   @import "common/stylus/variable.styl"
-
 
 </style>
