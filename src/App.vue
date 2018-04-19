@@ -16,7 +16,9 @@ export default {
     Mheader,
     Mtab,
   },
-  name: 'App'
+  name: 'App',
+
+
 }
 </script>
 

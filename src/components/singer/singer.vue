@@ -8,6 +8,7 @@ import {ERR_OK} from 'api/config'
 import {getSingerList} from 'api/singer.js'
 import Singer from 'common/js/singer.js'
 import listview from 'base/listview'
+import echarts from 'echarts'
 
 const HOT_SINGER_LEN=20
 const HOT_NAME='热门'
